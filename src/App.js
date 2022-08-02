@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Clock from './components/Clock';
 import ClockClassComponent from './components/ClockClassComponent';
+import NameForm from './components/NameForm';
 import Toggle from './components/Toggle';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Clock time={time} />
       <ClockClassComponent />
       <Toggle />
+      <NameForm />
     </div>
   );
 }
