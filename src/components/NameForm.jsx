@@ -1,35 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-class NameForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { value: '' };
+const NameForm = () => {
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+    const [name, setName] = useState(() => '');
+    // const renderCount = useRef(0);
+    const inputRef = useRef();
+    const prevName = useRef();
 
-    handleChange(event) {
-        this.setState({ value: event.target.value });
-    }
+    useEffect(() => {
+        prevName.current = name;
+    }, [name]);
 
-    handleSubmit(event) {
+    function focus() {
+        inputRef.current.focus();
+    };
+
+    // useEffect(() => {
+    //     renderCount.current += 1;
+    // });
+
+    const handleChange = (event) => {
+        setName(event.target.value);
+    };
+
+    const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.value);
-        alert('A name was submitted: ' + this.state.value);
-    }
+        alert('A name was submitted: ' + name);
+    };
 
-    render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
+    return (
+        <>
+            <form onSubmit={handleSubmit}>
                 <label>
                     Name:
-                    <input type="text" value={this.state.value} onChange={this.handleChange} />
+                    <input ref={inputRef} type="text" value={name} onChange={handleChange} />
                 </label>
                 <input type="submit" value="Submit" />
             </form>
-        );
-    }
-}
+
+            <button onClick={focus}>Focus</button>
+
+            <p>My new name is {name}, it used to be "{prevName.current}"</p>
+
+            {/* <p>This component has been rendered {renderCount.current} times.</p> */}
+        </>
+
+    );
+};
 
 export default NameForm;
