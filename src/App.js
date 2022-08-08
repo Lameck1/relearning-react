@@ -1,10 +1,12 @@
 // import React, { useState } from 'react';
-import { number } from 'prop-types';
+// import { number } from 'prop-types';
 import ClassContextComponent from './components/ClassContextComponent';
+import Counter from './components/Counter';
 // import Clock from './components/Clock';
 import FunctionContextComponent from './components/FunctionContextComponent';
 import NameForm from './components/NameForm';
 import { ThemeProvider } from './components/ThemeContext';
+import Todo from './components/ToDo';
 
 function App() {
 
@@ -26,6 +28,8 @@ function App() {
       <ThemeProvider>
         <FunctionContextComponent />
         <ClassContextComponent />
+        <Counter />
+        <Todo />
       </ThemeProvider>
     </div>
   );
